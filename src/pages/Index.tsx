@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Icon from '@/components/ui/icon';
 
 const portfolioWorks = [
@@ -87,14 +88,18 @@ const testimonials: Array<{
 const Index = () => {
   const [activeSection, setActiveSection] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(id);
+      setMobileMenuOpen(false);
     }
   };
+
+  const menuItems = ['Главная', 'Обо мне', 'Услуги', 'Работы', 'Процесс', 'Отзывы', 'Контакты'];
 
   const categories = ['all', 'Графический дизайн', 'Веб-дизайн', 'Инфографика', 'Логотипы', 'Презентации'];
   
@@ -109,7 +114,7 @@ const Index = () => {
           <div className="flex justify-between items-center">
             <h1 className="text-xl font-semibold tracking-tight">Портфолио</h1>
             <div className="hidden md:flex gap-8">
-              {['Главная', 'Обо мне', 'Услуги', 'Работы', 'Процесс', 'Отзывы', 'Контакты'].map((item) => (
+              {menuItems.map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
@@ -119,14 +124,42 @@ const Index = () => {
                 </button>
               ))}
             </div>
-            <Button 
-              variant="default" 
-              size="sm" 
-              className="hidden md:inline-flex"
-              onClick={() => scrollToSection('контакты')}
-            >
-              Связаться
-            </Button>
+            <div className="flex items-center gap-4">
+              <Button 
+                variant="default" 
+                size="sm" 
+                className="hidden md:inline-flex"
+                onClick={() => scrollToSection('контакты')}
+              >
+                Связаться
+              </Button>
+              <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="md:hidden">
+                    <Icon name="Menu" className="w-6 h-6" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                  <nav className="flex flex-col gap-6 mt-8">
+                    {menuItems.map((item) => (
+                      <button
+                        key={item}
+                        onClick={() => scrollToSection(item.toLowerCase())}
+                        className="text-left text-lg text-gray-700 hover:text-accent transition-colors duration-300 py-2"
+                      >
+                        {item}
+                      </button>
+                    ))}
+                    <Button 
+                      className="mt-4"
+                      onClick={() => scrollToSection('контакты')}
+                    >
+                      Связаться
+                    </Button>
+                  </nav>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
       </nav>
