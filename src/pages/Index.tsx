@@ -109,7 +109,7 @@ const Index = () => {
           <div className="flex justify-between items-center">
             <h1 className="text-xl font-semibold tracking-tight">Портфолио</h1>
             <div className="hidden md:flex gap-8">
-              {['Главная', 'Услуги', 'Работы', 'Процесс', 'Отзывы', 'Контакты'].map((item) => (
+              {['Главная', 'Обо мне', 'Услуги', 'Работы', 'Процесс', 'Отзывы', 'Контакты'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
@@ -147,6 +147,60 @@ const Index = () => {
               <Button size="lg" variant="outline" onClick={() => scrollToSection('контакты')}>
                 Связаться
               </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="обо мне" className="py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="order-2 md:order-1 animate-fade-in">
+              <h2 className="text-4xl md:text-5xl font-light mb-6">Обо мне</h2>
+              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                Привет! Я дизайнер с {new Date().getFullYear() - 2018}+ летним опытом создания визуальных решений для бизнеса.
+              </p>
+              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                Моя специализация — создание дизайна, который не только красиво выглядит, но и решает бизнес-задачи. Работаю с брендами от стартапов до крупных компаний.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <Icon name="Award" className="w-6 h-6 text-accent mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-medium mb-1">100+ проектов</h3>
+                    <p className="text-gray-600">Реализованных для клиентов из разных сфер</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Icon name="Target" className="w-6 h-6 text-accent mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-medium mb-1">Индивидуальный подход</h3>
+                    <p className="text-gray-600">Каждый проект уникален и создается с учетом ваших целей</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Icon name="Clock" className="w-6 h-6 text-accent mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-medium mb-1">Соблюдение сроков</h3>
+                    <p className="text-gray-600">Всегда сдаю проекты вовремя, без задержек</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="order-1 md:order-2 animate-scale-in">
+              <div className="relative">
+                <div className="aspect-square rounded-2xl overflow-hidden bg-gray-100">
+                  <img
+                    src="https://cdn.poehali.dev/projects/ff1baa10-46aa-4ed5-8f5c-ae6a96c0f5d8/files/2dfe173d-9878-4d54-a899-8df27ce50b91.jpg"
+                    alt="Фото дизайнера"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -right-6 bg-accent text-white p-6 rounded-2xl shadow-lg">
+                  <div className="text-3xl font-bold">{new Date().getFullYear() - 2018}+</div>
+                  <div className="text-sm">лет опыта</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
