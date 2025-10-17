@@ -158,31 +158,31 @@ const Index = () => {
             <div className="order-2 md:order-1 animate-fade-in">
               <h2 className="text-4xl md:text-5xl font-light mb-6">Обо мне</h2>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Привет! Я дизайнер с {new Date().getFullYear() - 2018}+ летним опытом создания визуальных решений для бизнеса.
+                Создаю дизайн, который помогает бизнесу выделяться и продавать. От логотипа до карточек товаров — работаю над проектами, которые приносят результат.
               </p>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Моя специализация — создание дизайна, который не только красиво выглядит, но и решает бизнес-задачи. Работаю с брендами от стартапов до крупных компаний.
+                Специализируюсь на графическом дизайне, веб-дизайне, инфографике для маркетплейсов, логотипах и презентациях. Каждый проект — это баланс эстетики и функциональности.
               </p>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <Icon name="Award" className="w-6 h-6 text-accent mt-1 flex-shrink-0" />
+                  <Icon name="Palette" className="w-6 h-6 text-accent mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="font-medium mb-1">100+ проектов</h3>
-                    <p className="text-gray-600">Реализованных для клиентов из разных сфер</p>
+                    <h3 className="font-medium mb-1">Современный дизайн</h3>
+                    <p className="text-gray-600">Минимализм, чистые линии и внимание к деталям</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Icon name="Target" className="w-6 h-6 text-accent mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="font-medium mb-1">Индивидуальный подход</h3>
-                    <p className="text-gray-600">Каждый проект уникален и создается с учетом ваших целей</p>
+                    <h3 className="font-medium mb-1">Продающий подход</h3>
+                    <p className="text-gray-600">Дизайн, который конвертирует просмотры в покупки</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Icon name="Clock" className="w-6 h-6 text-accent mt-1 flex-shrink-0" />
+                  <Icon name="Zap" className="w-6 h-6 text-accent mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="font-medium mb-1">Соблюдение сроков</h3>
-                    <p className="text-gray-600">Всегда сдаю проекты вовремя, без задержек</p>
+                    <h3 className="font-medium mb-1">Быстрая реализация</h3>
+                    <p className="text-gray-600">Работаю оперативно, соблюдая все договоренности</p>
                   </div>
                 </div>
               </div>
@@ -197,8 +197,8 @@ const Index = () => {
                   />
                 </div>
                 <div className="absolute -bottom-6 -right-6 bg-accent text-white p-6 rounded-2xl shadow-lg">
-                  <div className="text-3xl font-bold">{new Date().getFullYear() - 2018}+</div>
-                  <div className="text-sm">лет опыта</div>
+                  <div className="text-3xl font-bold">Дизайн</div>
+                  <div className="text-sm">что работает</div>
                 </div>
               </div>
             </div>
