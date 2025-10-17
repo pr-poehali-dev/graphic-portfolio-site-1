@@ -7,21 +7,38 @@ import Icon from '@/components/ui/icon';
 const portfolioWorks = [
   {
     id: 1,
-    title: 'Графический дизайн',
-    category: 'Брендинг',
-    image: 'https://cdn.poehali.dev/projects/ff1baa10-46aa-4ed5-8f5c-ae6a96c0f5d8/files/fd1d5d94-c0f2-4ba9-bbb4-300d85cf393e.jpg'
+    title: 'Название проекта',
+    category: 'Графический дизайн',
+    image: 'https://cdn.poehali.dev/projects/ff1baa10-46aa-4ed5-8f5c-ae6a96c0f5d8/files/fd1d5d94-c0f2-4ba9-bbb4-300d85cf393e.jpg',
+    description: 'Описание проекта появится здесь'
   },
   {
     id: 2,
-    title: 'Веб-дизайн',
-    category: 'UI/UX',
-    image: 'https://cdn.poehali.dev/projects/ff1baa10-46aa-4ed5-8f5c-ae6a96c0f5d8/files/ef9d1d5a-3139-4340-a164-fff0ac38279b.jpg'
+    title: 'Название проекта',
+    category: 'Веб-дизайн',
+    image: 'https://cdn.poehali.dev/projects/ff1baa10-46aa-4ed5-8f5c-ae6a96c0f5d8/files/ef9d1d5a-3139-4340-a164-fff0ac38279b.jpg',
+    description: 'Описание проекта появится здесь'
   },
   {
     id: 3,
-    title: 'Карточки товаров',
-    category: 'Маркетплейс',
-    image: 'https://cdn.poehali.dev/projects/ff1baa10-46aa-4ed5-8f5c-ae6a96c0f5d8/files/ebf32c75-222a-496e-b390-31dd37faa44d.jpg'
+    title: 'Название проекта',
+    category: 'Инфографика',
+    image: 'https://cdn.poehali.dev/projects/ff1baa10-46aa-4ed5-8f5c-ae6a96c0f5d8/files/ebf32c75-222a-496e-b390-31dd37faa44d.jpg',
+    description: 'Описание проекта появится здесь'
+  },
+  {
+    id: 4,
+    title: 'Название проекта',
+    category: 'Логотипы',
+    image: 'https://cdn.poehali.dev/projects/ff1baa10-46aa-4ed5-8f5c-ae6a96c0f5d8/files/fd1d5d94-c0f2-4ba9-bbb4-300d85cf393e.jpg',
+    description: 'Описание проекта появится здесь'
+  },
+  {
+    id: 5,
+    title: 'Название проекта',
+    category: 'Презентации',
+    image: 'https://cdn.poehali.dev/projects/ff1baa10-46aa-4ed5-8f5c-ae6a96c0f5d8/files/ef9d1d5a-3139-4340-a164-fff0ac38279b.jpg',
+    description: 'Описание проекта появится здесь'
   }
 ];
 
@@ -60,29 +77,16 @@ const process = [
   { step: '04', title: 'Правки', description: 'Вносим корректировки по вашим пожеланиям' }
 ];
 
-const testimonials = [
-  {
-    name: 'Анна Смирнова',
-    role: 'Основатель стартапа',
-    text: 'Профессиональный подход и внимание к деталям. Результат превзошёл ожидания!',
-    rating: 5
-  },
-  {
-    name: 'Дмитрий Иванов',
-    role: 'Маркетолог',
-    text: 'Отличное понимание задач бизнеса. Работы выполнены качественно и в срок.',
-    rating: 5
-  },
-  {
-    name: 'Елена Петрова',
-    role: 'Владелец магазина',
-    text: 'Карточки товаров получились яркими и продающими. Конверсия выросла на 40%!',
-    rating: 5
-  }
-];
+const testimonials: Array<{
+  name: string;
+  role: string;
+  text: string;
+  rating: number;
+}> = [];
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -91,6 +95,12 @@ const Index = () => {
       setActiveSection(id);
     }
   };
+
+  const categories = ['all', 'Графический дизайн', 'Веб-дизайн', 'Инфографика', 'Логотипы', 'Презентации'];
+  
+  const filteredWorks = selectedCategory === 'all' 
+    ? portfolioWorks 
+    : portfolioWorks.filter(work => work.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-white">
@@ -109,7 +119,12 @@ const Index = () => {
                 </button>
               ))}
             </div>
-            <Button variant="default" size="sm" className="hidden md:inline-flex">
+            <Button 
+              variant="default" 
+              size="sm" 
+              className="hidden md:inline-flex"
+              onClick={() => scrollToSection('контакты')}
+            >
               Связаться
             </Button>
           </div>
@@ -160,9 +175,26 @@ const Index = () => {
 
       <section id="работы" className="py-20 px-6">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl md:text-5xl font-light mb-16 text-center">Работы</h2>
+          <h2 className="text-4xl md:text-5xl font-light mb-8 text-center">Работы</h2>
+          
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  selectedCategory === category
+                    ? 'bg-accent text-white shadow-md'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {category === 'all' ? 'Все работы' : category}
+              </button>
+            ))}
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {portfolioWorks.map((work, index) => (
+            {filteredWorks.map((work, index) => (
               <Dialog key={work.id}>
                 <DialogTrigger asChild>
                   <div
@@ -192,7 +224,8 @@ const Index = () => {
                   />
                   <div className="mt-4">
                     <h3 className="text-2xl font-medium mb-2">{work.title}</h3>
-                    <p className="text-gray-600">{work.category}</p>
+                    <p className="text-accent font-medium mb-2">{work.category}</p>
+                    <p className="text-gray-600">{work.description}</p>
                   </div>
                 </DialogContent>
               </Dialog>
@@ -220,31 +253,33 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="отзывы" className="py-20 px-6">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl md:text-5xl font-light mb-16 text-center">Отзывы</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card
-                key={index}
-                className="p-8 animate-scale-in"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Icon key={i} name="Star" className="w-4 h-4 fill-accent text-accent" />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-6 italic">"{testimonial.text}"</p>
-                <div>
-                  <div className="font-medium">{testimonial.name}</div>
-                  <div className="text-sm text-gray-600">{testimonial.role}</div>
-                </div>
-              </Card>
-            ))}
+      {testimonials.length > 0 && (
+        <section id="отзывы" className="py-20 px-6">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-4xl md:text-5xl font-light mb-16 text-center">Отзывы</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <Card
+                  key={index}
+                  className="p-8 animate-scale-in"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Icon key={i} name="Star" className="w-4 h-4 fill-accent text-accent" />
+                    ))}
+                  </div>
+                  <p className="text-gray-700 mb-6 italic">"{testimonial.text}"</p>
+                  <div>
+                    <div className="font-medium">{testimonial.name}</div>
+                    <div className="text-sm text-gray-600">{testimonial.role}</div>
+                  </div>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section id="контакты" className="py-20 px-6 bg-primary text-primary-foreground">
         <div className="container mx-auto max-w-4xl text-center">
